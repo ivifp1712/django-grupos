@@ -77,16 +77,31 @@ WSGI_APPLICATION = 'Prueba1.wsgi.application'
 
 # Clever Cloud
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'bw1ivoh70jxrgtlxtkuh',
+#         'USER': 'uervyoscokr1qwmcrmcq',
+#         'PASSWORD': 'hZBKDWX7qv3GxwOq4jTL',
+#         'HOST': 'bw1ivoh70jxrgtlxtkuh-postgresql.services.clever-cloud.com',
+#         'DATABASE_PORT': '5432',
+#     }
+# }
+
+#python anywhere
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'bw1ivoh70jxrgtlxtkuh',
-        'USER': 'uervyoscokr1qwmcrmcq',
-        'PASSWORD': 'hZBKDWX7qv3GxwOq4jTL',
-        'HOST': 'bw1ivoh70jxrgtlxtkuh-postgresql.services.clever-cloud.com',
-        'DATABASE_PORT': '5432',
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'django',
+            'USER': 'ivifp1712',
+            'PASSWORD': 'Ivan2003',
+            'HOST': 'ivifp1712.mysql.pythonanywhere-services.com',
+            'PORT': '3306',
+        }
     }
-}
+
+
 
 #localhost
 
