@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Todos</title>
+    <style>
+        body{
+            margin: 10px;
+        }
+        form{
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn btn-success" onclick="introducir()"> Añadir alumnos</button>
+    <form action="/todos/" method="post" id="añadir" style="display: none"> {% csrf_token %}
+        <p> Nombre: <input type="text" name="nombre"></p>
+        <input type="submit" value="Añadir">
+    </form>
+    <button class="btn btn-danger" onclick="eliminar()"> Eliminar alumnos</button>
+
+    
+    <form action="/todos/" method="post" id="eliminar" style="display: none"> {% csrf_token %}
+        <p> Nombre : 
+            <select name="nombre1" >
+                <option value=""> -- </option>
+                {% for x in todos %}
+                    <option value="{{ x }}"> {{ x }}</option>
+                {% endfor %}
+            </select>
+
+
+        </p>
+        <input type="submit" value="Eliminar">
+    </form>
+    <form method="post"> {% csrf_token %}<input type="hidden" name="reload"> <button type="submit" class="btn btn-primary" onclick="location.reload()"> Recargar Pagina</button></form> 
+    <h2> Los alumnos son: {{todos|length}}</h2>
+    {% for x in todos %}
+        <li> {{x}}</li>
+    {% endfor %}
+    <h2>Creacion de grupo</h2>
+    <form action="/todos/" method="post"> {% csrf_token %}
+        <p> El numero de personas por grupo va a ser de: <input type="number" name="num"><input type="submit" value="Enviar"></p>
+    </form>
+    {% if num %}
+        <h2> Los grupos de {{num}} son: </h2>
+        <ol>
+        {% for x in grupos %}
+            <li> Grupo: <ul> {% for y in x %} <li> {{y}}</li> {% endfor %}</ul></li>
+        {% endfor %}
+        </ol>
+    {% endif %}
+
+
+    <script>
+        function introducir() {
+            document.getElementById("añadir").style.display="block";
+        }
+        function eliminar(){ 
+            document.getElementById("eliminar").style.display="block";
+        }
+    </script>
+
+    {% if alertas and alertas != "" %}
+    <script>
+        window.alert("{{alertas}}")
+        //location.reload()
+    </script>
+    {% endif %}
+</body>
+
+
+</html>
